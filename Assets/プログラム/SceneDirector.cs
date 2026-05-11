@@ -1,39 +1,48 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // 新しいInput Systemを使うために必要
 using UnityEngine.SceneManagement;
 
 public class SceneDirector : MonoBehaviour
 {
-    // ボタンから呼び出す用：指定した名前のシーンに移動する
-    // インスペクターのボタンのOnClickで、引数（文字列）を入力して使います
-    public void ChangeScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+    [Header("設定")]
+    public Transform catTransform; // インスペクターで猫を登録
+    public float leftLimit = -9.0f;  // 左端の境界線
+    public float rightLimit = 9.0f;  // 右端の境界線
 
-    // タイトル画面（TitleScene）へ戻る
-    public void BackToTitle()
-    {
-        SceneManager.LoadScene("TitleScene");
-    }
+    // --- ボタンから呼び出す用 ---
 
-    // ゲーム開始ボタン（1stSceneへ移動）
+    // スタートボタン（TitleSceneにあるボタン）にこれを設定する
     public void StartButton()
     {
-        // 1枚目のステージへ移動
         SceneManager.LoadScene("1stScene");
     }
 
+    // --- 自動チェック用 ---
+
     void Update()
     {
-        // もし「ボタンをクリック」ではなく「画面のどこでもクリックしたら開始」にしたい場合
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        // タイトルシーンなど、猫がいないシーンでは以下の処理をしない
+        if (catTransform == null) return;
+
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        // 1. 右端に行ったら次のステージへ
+        if (catTransform.position.x > rightLimit)
         {
-            // 現在のシーンが "TitleScene" か "GameOverScene" のときだけ、クリックで次へ進む
-            string currentScene = SceneManager.GetActiveScene().name;
-            if (currentScene == "TitleScene" || currentScene == "GameOverScene")
+            if (currentScene == "1stScene") SceneManager.LoadScene("2ndScene");
+            else if (currentScene == "2ndScene") SceneManager.LoadScene("3rdScene");
+        }
+
+        // 2. 左端に行ったら前のステージへ（1stの左端はストップ）
+        if (catTransform.position.x < leftLimit)
+        {
+            if (currentScene == "2ndScene") SceneManager.LoadScene("1stScene");
+            else if (currentScene == "3rdScene") SceneManager.LoadScene("2ndScene");
+            else if (currentScene == "1stScene")
             {
-                SceneManager.LoadScene("1stScene");
+                // 1stSceneより左には行けないようにする
+                Vector3 pos = catTransform.position;
+                pos.x = leftLimit;
+                catTransform.position = pos;
             }
         }
     }

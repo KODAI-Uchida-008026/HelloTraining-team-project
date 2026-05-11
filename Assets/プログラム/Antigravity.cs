@@ -115,12 +115,4 @@ public class Antigravity : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision) { isGrounded = true; }
     // コライダーから離れたら「空中」とみなす
     private void OnCollisionExit2D(Collision2D collision) { isGrounded = false; }
-
-    // --- ゴール判定 ---
-    // トリガー（Is Trigger）設定のコライダーに入ったとき
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("ゴール！");
-        SceneManager.LoadScene("ClearScene");
-    }
 }
