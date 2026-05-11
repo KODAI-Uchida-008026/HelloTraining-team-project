@@ -57,7 +57,7 @@ public class Antigravity : MonoBehaviour
 
         // --- 1. 重力反転処理 (Uキー) ---
         // Uキーが押され、かつ接地しているときだけ反転可能
-        if (keyboard.uKey.wasPressedThisFrame && isGrounded)
+        if (keyboard.gKey.wasPressedThisFrame && isGrounded)
         {
             // 重力スケールを反転（1.0なら-1.0へ、-1.0なら1.0へ）
             this.rigid2D.gravityScale *= -1.0f;
@@ -82,8 +82,8 @@ public class Antigravity : MonoBehaviour
 
         // --- 3. 左右移動処理 (方向キー) ---
         float direction = 0;
-        if (keyboard.rightArrowKey.isPressed) direction = 1.0f; // 右向き
-        if (keyboard.leftArrowKey.isPressed) direction = -1.0f; // 左向き
+        if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) direction = 1.0f; // 右向き
+        if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) direction = -1.0f; // 左向き
 
         // 速度制限（maxWalkSpeed）を超えていなければ力を加える
         if (Mathf.Abs(this.rigid2D.linearVelocityX) < this.maxWalkSpeed)
