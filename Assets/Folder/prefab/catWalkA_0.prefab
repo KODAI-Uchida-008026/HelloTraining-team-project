@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3685582307603427488}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: -3.15, z: 0}
+  m_LocalPosition: {x: -6.5, y: -3.28, z: 0}
   m_LocalScale: {x: 2, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,6 +56,7 @@ MonoBehaviour:
   - {fileID: -7477192630708466740, guid: a772051a6e01d004bbc4cd18a3045c52, type: 3}
   jumpSprites:
   - {fileID: -7026802269355729512, guid: 9d3b15965ccb054479ca2e746dad8811, type: 3}
+  spawnPoint: {fileID: 0}
 --- !u!212 &5112096633255686499
 SpriteRenderer:
   serializedVersion: 2

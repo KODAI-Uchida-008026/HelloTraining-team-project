@@ -921,8 +921,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneDirector
   catTransform: {fileID: 6804124899386583128, guid: eaf7fda5b021f4f4c87687168f863daf, type: 3}
-  leftLimit: -7.5
-  rightLimit: 7.5
+  leftLimit: -7
+  rightLimit: 7
 --- !u!4 &1781704227
 Transform:
   m_ObjectHideFlags: 0

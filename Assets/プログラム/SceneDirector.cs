@@ -4,42 +4,73 @@ using UnityEngine.SceneManagement;
 public class SceneDirector : MonoBehaviour
 {
     [Header("設定")]
-    public Transform catTransform; // インスペクターで猫を登録
-    public float leftLimit = -9.0f;  // 左端の境界線
-    public float rightLimit = 9.0f;  // 右端の境界線
+    public Transform catTransform;
+    public float leftLimit = -7.0f;
+    public float rightLimit = 7.0f;
 
-    // --- ボタンから呼び出す用 ---
+    // 前のシーンが何だったかを記憶しておく変数（staticにすることでシーンが変わっても消えません）
+    private static string lastSceneName = "";
 
-    // スタートボタン（TitleSceneにあるボタン）にこれを設定する
+    void Start()
+    {
+        // シーンが始まった時、猫がいれば位置を調整する
+        if (catTransform != null)
+        {
+            AdjustCatPosition();
+        }
+    }
+
+    // 前のシーン名に合わせて猫の位置を調整する
+    void AdjustCatPosition()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        Vector3 pos = catTransform.position;
+
+        // 【右から来た場合】左端から出す
+        if ((lastSceneName == "1stScene" && currentScene == "2ndScene") ||
+            (lastSceneName == "2ndScene" && currentScene == "3rdScene"))
+        {
+            pos.x = leftLimit + 0.5f; // 少し内側に入れる
+        }
+        // 【左から来た場合】右端から出す
+        else if ((lastSceneName == "2ndScene" && currentScene == "1stScene") ||
+                 (lastSceneName == "3rdScene" && currentScene == "2ndScene"))
+        {
+            pos.x = rightLimit - 0.5f; // 少し内側に入れる
+        }
+
+        catTransform.position = pos;
+    }
+
     public void StartButton()
     {
+        lastSceneName = "TitleScene";
         SceneManager.LoadScene("1stScene");
     }
 
-    // --- 自動チェック用 ---
-
     void Update()
     {
-        // タイトルシーンなど、猫がいないシーンでは以下の処理をしない
         if (catTransform == null) return;
 
         string currentScene = SceneManager.GetActiveScene().name;
 
-        // 1. 右端に行ったら次のステージへ
+        // 右端に行ったら次のステージへ
         if (catTransform.position.x > rightLimit)
         {
+            lastSceneName = currentScene; // 移動前に今のシーン名を保存
             if (currentScene == "1stScene") SceneManager.LoadScene("2ndScene");
             else if (currentScene == "2ndScene") SceneManager.LoadScene("3rdScene");
         }
 
-        // 2. 左端に行ったら前のステージへ（1stの左端はストップ）
+        // 左端に行ったら前のステージへ
         if (catTransform.position.x < leftLimit)
         {
+            lastSceneName = currentScene; // 移動前に今のシーン名を保存
             if (currentScene == "2ndScene") SceneManager.LoadScene("1stScene");
             else if (currentScene == "3rdScene") SceneManager.LoadScene("2ndScene");
             else if (currentScene == "1stScene")
             {
-                // 1stSceneより左には行けないようにする
+                // 1stSceneの左端はストップ
                 Vector3 pos = catTransform.position;
                 pos.x = leftLimit;
                 catTransform.position = pos;

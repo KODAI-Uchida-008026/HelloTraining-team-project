@@ -20,6 +20,9 @@ public class Antigravity : MonoBehaviour
     // --- 状態管理用の変数 ---
     bool isGrounded = false;      // 地面（または天井）に触れているか
 
+    // --- スクリプトの最初の方に変数を追加 ---
+    public Transform spawnPoint; // インスペクターでSpawnPointをドラッグ＆ドロップする用
+
     void Start()
     {
         // フレームレートを60に固定
@@ -27,7 +30,24 @@ public class Antigravity : MonoBehaviour
         // コンポーネントを自動取得
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // --- ここから追加：名前でスポーン地点を探してワープする ---
+        GameObject spawnObj = GameObject.Find("SpawnPoint");
+        if (spawnObj != null)
+        {
+            // 取得したオブジェクトの座標に猫を移動
+            this.transform.position = spawnObj.transform.position;
+        }
+        else
+        {
+            Debug.LogWarning("Hierarchyに 'SpawnPoint' という名前のオブジェクトが見つかりません！");
+        }
+
+        // 移動直後に動かないよう速度をゼロにする
+        this.rigid2D.linearVelocity = Vector2.zero;
     }
+
+
 
     void Update()
     {
