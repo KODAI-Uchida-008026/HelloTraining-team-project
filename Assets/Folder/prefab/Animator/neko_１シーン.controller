@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: neko
+  m_Name: "neko_\uFF11\u30B7\u30FC\u30F3"
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -33,7 +33,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 2561513975011439998}
-    m_Position: {x: 200, y: 70, z: 0}
+    m_Position: {x: 30, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -64,7 +64,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2fd00ee213f0ff245aaaa35b37887581, type: 2}
+  m_Motion: {fileID: 7400000, guid: bf31f508ec6e9e44cad36b40e12ec0ec, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -11,6 +11,8 @@ public class SceneDirector : MonoBehaviour
     // 前のシーンが何だったかを記憶しておく変数（staticにすることでシーンが変わっても消えません）
     private static string lastSceneName = "";
 
+    public Transform ReMovePoint;
+
     void Start()
     {
         // シーンが始まった時、猫がいれば位置を調整する
@@ -38,9 +40,10 @@ public class SceneDirector : MonoBehaviour
         // 【左から来た場合】右端から出す
         else if ((lastSceneName == "2ndScene" && currentScene == "1stScene") ||
                  (lastSceneName == "3rdScene" && currentScene == "2ndScene") ||
-                 (lastSceneName == "5thScene" && currentScene == "4thScene") ||
-                 (lastSceneName == "6thScene" && currentScene == "5thScene"))
+                 (lastSceneName == "5thScene" && currentScene == "4ndScene") ||
+                 (lastSceneName == "3rdScene" && currentScene == "5thScene"))
         {
+
             pos.x = rightLimit - 0.5f; // 少し内側に入れる
         }
 

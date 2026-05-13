@@ -601,6 +601,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52944dd5a6b22a34796d9d9e0f5cfaa8, type: 3}
+--- !u!4 &1188210124 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6804124899386583128, guid: eaf7fda5b021f4f4c87687168f863daf, type: 3}
+  m_PrefabInstance: {fileID: 1282648037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1196176138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -674,6 +679,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: catWalkA_0
       objectReference: {fileID: 0}
+    - target: {fileID: 5649531364500192267, guid: eaf7fda5b021f4f4c87687168f863daf, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1399855760}
     - target: {fileID: 6804124899386583128, guid: eaf7fda5b021f4f4c87687168f863daf, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.26
@@ -1083,9 +1092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b775366e6e10d26419bded3bd188ecce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneDirector
-  catTransform: {fileID: 6804124899386583128, guid: eaf7fda5b021f4f4c87687168f863daf, type: 3}
-  leftLimit: -7
-  rightLimit: 7
+  catTransform: {fileID: 1188210124}
+  leftLimit: -9
+  rightLimit: 9
 --- !u!4 &2120375207
 Transform:
   m_ObjectHideFlags: 0
