@@ -48,14 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d53300f4cbf24aa4085222e11d8c5180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Antigravity
-  jumpForce: 500
-  walkForce: 30
+  jumpForce: 750
+  walkForce: 15
   maxWalkSpeed: 2
   walkSprites:
   - {fileID: 292310981503173399, guid: fb8b75879eb1363478b352484d4355f0, type: 3}
   - {fileID: -7477192630708466740, guid: a772051a6e01d004bbc4cd18a3045c52, type: 3}
   jumpSprites:
   - {fileID: -7026802269355729512, guid: 9d3b15965ccb054479ca2e746dad8811, type: 3}
+  spawnPoint: {fileID: 0}
 --- !u!212 &7364146515647952
 SpriteRenderer:
   serializedVersion: 2
