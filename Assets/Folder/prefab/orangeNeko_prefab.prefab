@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 2.7, z: 1}
+  m_LocalScale: {x: 5, y: 2.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Antigravity
   jumpForce: 750
   walkForce: 15
-  maxWalkSpeed: 2
+  maxWalkSpeed: 1.5
   walkSprites:
   - {fileID: 292310981503173399, guid: fb8b75879eb1363478b352484d4355f0, type: 3}
   - {fileID: -7477192630708466740, guid: a772051a6e01d004bbc4cd18a3045c52, type: 3}
@@ -177,8 +177,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.2}
-  m_Radius: 0.25
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.2
 --- !u!61 &7362128369466407143
 BoxCollider2D:
   m_ObjectHideFlags: 0
