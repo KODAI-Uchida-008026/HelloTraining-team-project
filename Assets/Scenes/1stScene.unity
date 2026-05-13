@@ -190,6 +190,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6927573576121117508, guid: 52944dd5a6b22a34796d9d9e0f5cfaa8, type: 3}
   m_PrefabInstance: {fileID: 105842874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &132991817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6815228222783827621, guid: 7cd7b605a5c02924085d145ed906a3b1, type: 3}
+  m_PrefabInstance: {fileID: 60857218529927549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &132991820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132991817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb58bd1d83613e48bcd167b6fc41839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyAndSaveState
+  objectID: neko_1
 --- !u!1001 &180418073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1502,6 +1520,7 @@ MonoBehaviour:
   catTransform: {fileID: 47900786}
   leftLimit: -13
   rightLimit: 13
+  ReMovePoint: {fileID: 0}
 --- !u!4 &2096694624
 Transform:
   m_ObjectHideFlags: 0
@@ -1567,12 +1586,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6815228222783827621, guid: 7cd7b605a5c02924085d145ed906a3b1, type: 3}
       propertyPath: m_Name
-      value: neko
+      value: neko_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6815228222783827621, guid: 7cd7b605a5c02924085d145ed906a3b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 132991820}
   m_SourcePrefab: {fileID: 100100000, guid: 7cd7b605a5c02924085d145ed906a3b1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

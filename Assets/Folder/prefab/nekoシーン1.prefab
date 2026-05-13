@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 255853120235554123}
   - component: {fileID: 5787423288756029560}
   m_Layer: 0
-  m_Name: neko
+  m_Name: "neko\u30B7\u30FC\u30F31"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

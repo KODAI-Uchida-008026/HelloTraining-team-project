@@ -2,13 +2,34 @@ using UnityEngine;
 
 public class DestroyAndSaveState : MonoBehaviour
 {
-    [SerializeField] private string objectID; // オブジェクトを一意に識別するための名前（例: "TreasureChest_01"）
+    [SerializeField] private string objectID;
 
-    private void Awake()
+    // より確実にそのオブジェクトが所属しているシーン名を取得する
+    private string SaveKey
     {
-        // 起動時、すでに削除フラグ（1）が保存されていたら自身を即座に破棄する
-        if (PlayerPrefs.GetInt(objectID, 0) == 1)
+        get
         {
+            // GetActiveSceneではなく、このオブジェクト自体が配置されているシーン名を取得
+            string sceneName = gameObject.scene.name;
+            return $"{sceneName}_{objectID}";
+        }
+    }
+
+    private void Start()
+    {
+        if (string.IsNullOrEmpty(objectID))
+        {
+            Debug.LogError($"{gameObject.name} の objectID が設定されていません！");
+            return;
+        }
+
+        // 保存されているキーの状態を確認するデバッグログ
+        int savedStatus = PlayerPrefs.GetInt(SaveKey, 0);
+        Debug.Log($"[チェック作成] キー名: {SaveKey} / 状態: {savedStatus}");
+
+        if (savedStatus == 1)
+        {
+            Debug.Log($"[即座に破棄] {SaveKey} は削除済みデータがあるため破棄します。");
             Destroy(gameObject);
         }
     }
@@ -16,11 +37,11 @@ public class DestroyAndSaveState : MonoBehaviour
     // アニメーションイベントから呼び出す関数
     public void OnAnimationEnd()
     {
-        // 削除フラグ（1）を保存する
-        PlayerPrefs.SetInt(objectID, 1);
-        PlayerPrefs.Save(); // データを確定
+        Debug.Log($"[アニメ終了イベント発火] キー名: {SaveKey} を削除フラグ1で保存します。");
 
-        // オブジェクトをシーンから削除
+        PlayerPrefs.SetInt(SaveKey, 1);
+        PlayerPrefs.Save();
+
         Destroy(gameObject);
     }
 }

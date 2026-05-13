@@ -52,9 +52,14 @@ public class SceneDirector : MonoBehaviour
 
     public void StartButton()
     {
+        // 追加：今までPlayerPrefsに保存されたオブジェクトの消去フラグをすべてリセットする
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save(); // 変更を確実に保存する
+
         lastSceneName = "TitleScene";
         SceneManager.LoadScene("1stScene");
     }
+
 
     void Update()
     {
