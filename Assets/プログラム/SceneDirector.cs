@@ -28,7 +28,9 @@ public class SceneDirector : MonoBehaviour
 
         // 【右から来た場合】左端から出す
         if ((lastSceneName == "1stScene" && currentScene == "2ndScene") ||
-            (lastSceneName == "2ndScene" && currentScene == "3rdScene"))
+            (lastSceneName == "2ndScene" && currentScene == "3rdScene") ||
+            (lastSceneName == "3rdScene" && currentScene == "4thScene"))
+
         {
             pos.x = leftLimit + 0.5f; // 少し内側に入れる
         }
@@ -60,6 +62,10 @@ public class SceneDirector : MonoBehaviour
             lastSceneName = currentScene; // 移動前に今のシーン名を保存
             if (currentScene == "1stScene") SceneManager.LoadScene("2ndScene");
             else if (currentScene == "2ndScene") SceneManager.LoadScene("3rdScene");
+            else if (currentScene == "3rdScene") SceneManager.LoadScene("4thScene");
+            else if (currentScene == "4thScene") SceneManager.LoadScene("5thScene");
+            else if (currentScene == "5thScene") SceneManager.LoadScene("6thScene");
+
         }
 
         // 左端に行ったら前のステージへ
@@ -68,7 +74,10 @@ public class SceneDirector : MonoBehaviour
             lastSceneName = currentScene; // 移動前に今のシーン名を保存
             if (currentScene == "2ndScene") SceneManager.LoadScene("1stScene");
             else if (currentScene == "3rdScene") SceneManager.LoadScene("2ndScene");
-            else if (currentScene == "1stScene")
+            else if (currentScene == "4thScene") SceneManager.LoadScene("3rdScene");
+            else if (currentScene == "5thScene") SceneManager.LoadScene("4thScene");
+            else if (currentScene == "6thScene") SceneManager.LoadScene("5thScene");
+
             {
                 // 1stSceneの左端はストップ
                 Vector3 pos = catTransform.position;
