@@ -1826,7 +1826,6 @@ MonoBehaviour:
   catTransform: {fileID: 47900786}
   leftLimit: -13
   rightLimit: 13
-  ReMovePoint: {fileID: 0}
 --- !u!4 &2096694624
 Transform:
   m_ObjectHideFlags: 0
