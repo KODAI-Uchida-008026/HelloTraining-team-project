@@ -83,6 +83,10 @@ public class Antigravity : MonoBehaviour
         {
             maxWalkSpeed = 4.0f;
         }
+        else
+        {
+            maxWalkSpeed = 2.0f;
+        }
         if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) direction = 1.0f;
         if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) direction = -1.0f;
 
