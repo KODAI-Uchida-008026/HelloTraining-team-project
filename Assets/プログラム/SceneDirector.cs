@@ -11,7 +11,7 @@ public class SceneDirector : MonoBehaviour
     // 前のシーンが何だったかを記憶しておく変数（staticにすることでシーンが変わっても消えません）
     private static string lastSceneName = "";
 
-    public Transform ReMovePoint;
+    //public Transform ReMovePoint;
 
     void Start()
     {
