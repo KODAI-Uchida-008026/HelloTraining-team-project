@@ -106,7 +106,7 @@ public class SceneDirector : MonoBehaviour
             else if (currentScene == "2ndScene") SceneManager.LoadScene("3rdScene");
             //else if (currentScene == "3rdScene") SceneManager.LoadScene("4thScene"); // コメントアウト中
             else if (currentScene == "4thScene") SceneManager.LoadScene("5thScene");
-            else if (currentScene == "5thScene") SceneManager.LoadScene("6thScene");
+            //else if (currentScene == "5thScene") SceneManager.LoadScene("6thScene");
         }
 
         // --- 【左端の境界チェック】左端を超えたら前のステージへ戻る、またはその場に止まる ---
@@ -129,7 +129,7 @@ public class SceneDirector : MonoBehaviour
                 else if (currentScene == "3rdScene") SceneManager.LoadScene("2ndScene");
                 // else if (currentScene == "4thScene") SceneManager.LoadScene("3rdScene"); // コメントアウト中
                 else if (currentScene == "5thScene") SceneManager.LoadScene("4thScene");
-                else if (currentScene == "6thScene") SceneManager.LoadScene("5thScene");
+                //else if (currentScene == "6thScene") SceneManager.LoadScene("5thScene");
             }
         }
     }
