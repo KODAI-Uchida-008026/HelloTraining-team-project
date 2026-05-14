@@ -65,7 +65,7 @@ public class Antigravity : MonoBehaviour
         {
             if (keyboard.spaceKey.wasPressedThisFrame && isGrounded && keyboard.sKey.isPressed)
             {
-                jumpForce *= 2;
+                jumpForce = 500.0f * 2;
             }
             else
             {
@@ -78,6 +78,11 @@ public class Antigravity : MonoBehaviour
 
         // --- 3. 左右移動処理 ---
         float direction = 0;
+        if (keyboard.rightArrowKey.isPressed && keyboard.bKey.isPressed || keyboard.dKey.isPressed && keyboard.bKey.isPressed ||
+            keyboard.leftArrowKey.isPressed && keyboard.bKey.isPressed || keyboard.aKey.isPressed && keyboard.bKey.isPressed)
+        {
+            maxWalkSpeed = 4.0f;
+        }
         if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) direction = 1.0f;
         if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) direction = -1.0f;
 
