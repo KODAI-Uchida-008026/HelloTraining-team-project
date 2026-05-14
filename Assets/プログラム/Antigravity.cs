@@ -140,4 +140,38 @@ public class Antigravity : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision) { isGrounded = true; }
     private void OnCollisionExit2D(Collision2D collision) { isGrounded = false; }
+
+    bool hasKagi = false;
+
+    // --- トリガー（判定領域）の接触処理 ---
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // A. 鍵を拾う判定
+        if (collision.gameObject.name == "カギ")
+        {
+            hasKagi = true;
+            Debug.Log("鍵を拾いました！");
+            Destroy(collision.gameObject);
+        }
+
+        // B. ゴール（フラッグ）の判定
+        if (collision.gameObject.name == "ドア")
+        {
+            if (hasKagi == true)
+            {
+                Debug.Log("次のシーンへ");
+                SceneManager.LoadScene("6thScene");
+            }
+            else
+            {
+                Debug.Log("フラッグに到達しましたが、鍵がありません！");
+            }
+        }
+    }
+
+    // 外部から鍵の所持状態を確認したい場合用の関数
+    public bool HasKagi()
+    {
+        return hasKagi;
+    }
 }
