@@ -49,8 +49,7 @@ public class SceneDirector : MonoBehaviour
         // 次の部屋の「左端」から登場させる
         if ((lastSceneName == "1stScene" && currentScene == "2ndScene") ||
             (lastSceneName == "2ndScene" && currentScene == "3rdScene") ||
-            (lastSceneName == "4thScene" && currentScene == "5thScene") ||
-            (lastSceneName == "5thScene" && currentScene == "6thScene"))
+            (lastSceneName == "4thScene" && currentScene == "5thScene")) //|| (lastSceneName == "5thScene" && currentScene == "6thScene")
         {
             // 左側の限界値より少しだけ内側（右寄り）に配置する
             pos.x = leftLimit + 0.5f;
@@ -59,8 +58,7 @@ public class SceneDirector : MonoBehaviour
         // 前の部屋の「右端」から登場させる
         else if ((lastSceneName == "2ndScene" && currentScene == "1stScene") ||
                  (lastSceneName == "3rdScene" && currentScene == "2ndScene") ||
-                 (lastSceneName == "5thScene" && currentScene == "4thScene") || // 【修正】4ndSceneのタイポを4thSceneに直しました
-                 (lastSceneName == "3rdScene" && currentScene == "5thScene"))
+                 (lastSceneName == "5thScene" && currentScene == "4thScene")) //|| (lastSceneName == "6thScene" && currentScene == "5thScene")
         {
             // 右側の限界値より少しだけ内側（左寄り）に配置する
             pos.x = rightLimit - 0.5f;
