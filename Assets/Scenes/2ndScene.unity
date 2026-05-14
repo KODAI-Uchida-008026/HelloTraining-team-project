@@ -1864,6 +1864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1781704227}
   - component: {fileID: 1781704226}
+  - component: {fileID: 1781704228}
   m_Layer: 0
   m_Name: SceneDirector
   m_TagString: Untagged
@@ -1886,7 +1887,6 @@ MonoBehaviour:
   catTransform: {fileID: 1151914996}
   leftLimit: -13
   rightLimit: 13
-  ReMovePoint: {fileID: 0}
 --- !u!4 &1781704227
 Transform:
   m_ObjectHideFlags: 0
@@ -1902,6 +1902,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1781704228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781704225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0cebcea3751c94e9a0116191652425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::pushTitle
 --- !u!1001 &1852241661
 PrefabInstance:
   m_ObjectHideFlags: 0

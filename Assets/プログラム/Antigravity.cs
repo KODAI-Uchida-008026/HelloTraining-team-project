@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem; // 新しい入力システムを使うために必要
 using UnityEngine.SceneManagement; // シーンのロード（やり直しやゴール）に必要
@@ -142,19 +141,6 @@ public class Antigravity : MonoBehaviour
         if (gameCount >= 3)
         {
             SceneManager.LoadScene("GameOverScene");
-            // ゲームオーバー画面からスタート画面に戻るコルーチン
-            StartCoroutine(ContinueCoroutine());
-        }
-    }
-
-    // コンテニューコルーチン
-    private IEnumerator ContinueCoroutine()
-    {
-        // if (SceneManager == "GameOverScene")
-        {
-            yield return new WaitForSeconds(5);
-            SceneManager.LoadScene("TitleScene");
-            Debug.Log("スタート画面へ");
         }
     }
 
