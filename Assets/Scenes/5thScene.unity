@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 810933739}
   - component: {fileID: 810933738}
   m_Layer: 0
-  m_Name: "\u30AB\u30AE"
+  m_Name: key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,7 +799,7 @@ GameObject:
   - component: {fileID: 965639742}
   - component: {fileID: 965639741}
   m_Layer: 0
-  m_Name: "\u958B\u3044\u305F\u30C9\u30A2_0"
+  m_Name: aiteru
   m_TagString: open
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1392,7 +1392,7 @@ GameObject:
   - component: {fileID: 1918659484}
   - component: {fileID: 1918659483}
   m_Layer: 0
-  m_Name: "\u62DB\u304D\u732B_0"
+  m_Name: shouheki
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1529,7 +1529,7 @@ GameObject:
   - component: {fileID: 1943397109}
   - component: {fileID: 1943397108}
   m_Layer: 0
-  m_Name: "\u732B\u306E\u8089\u7403_0"
+  m_Name: nikukyuu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1661,7 +1661,7 @@ GameObject:
   - component: {fileID: 2061515331}
   - component: {fileID: 2061515330}
   m_Layer: 0
-  m_Name: "\u30C9\u30A2"
+  m_Name: door
   m_TagString: close
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

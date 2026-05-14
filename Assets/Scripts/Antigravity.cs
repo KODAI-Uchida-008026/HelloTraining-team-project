@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -151,7 +152,7 @@ public class Antigravity : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // A. 鍵を拾う判定
-        if (collision.gameObject.name == "カギ")
+        if (collision.gameObject.name == "key")
         {
             hasKagi = true;
             Debug.Log("鍵を拾いました！");
@@ -159,18 +160,24 @@ public class Antigravity : MonoBehaviour
         }
 
         // B. ゴール（フラッグ）の判定
-        if (collision.gameObject.name == "ドア")
+        if (collision.gameObject.name == "door")
         {
             if (hasKagi == true)
             {
                 Debug.Log("次のシーンへ");
-                SceneManager.LoadScene("6thScene");
+                StartCoroutine(DoorCoroutine());
             }
             else
             {
                 Debug.Log("フラッグに到達しましたが、鍵がありません！");
             }
         }
+    }
+
+    private IEnumerator DoorCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("6thScene");
     }
 
     // 外部から鍵の所持状態を確認したい場合用の関数
