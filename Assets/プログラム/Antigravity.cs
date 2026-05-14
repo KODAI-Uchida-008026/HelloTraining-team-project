@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem; // 新しい入力システムを使うために必要
 using UnityEngine.SceneManagement; // シーンのロード（やり直しやゴール）に必要
@@ -23,6 +24,9 @@ public class Antigravity : MonoBehaviour
     // --- スクリプトの最初の方に変数を追加 ---
     public Transform spawnPoint; // インスペクターでSpawnPointをドラッグ＆ドロップする用
 
+    // 落下カウント
+    static int gameCount = 0;
+
     void Start()
     {
         // フレームレートを60に固定
@@ -45,8 +49,9 @@ public class Antigravity : MonoBehaviour
 
         // 移動直後に動かないよう速度をゼロにする
         this.rigid2D.linearVelocity = Vector2.zero;
-    }
 
+
+    }
 
 
     void Update()
@@ -126,9 +131,33 @@ public class Antigravity : MonoBehaviour
         // 落下しすぎた、または重力反転で上昇しすぎた場合にシーンをリロード
         if (transform.position.y < -10 || transform.position.y > 10)
         {
+            // 落下のたびにカウント
+            gameCount++;
+            Debug.Log(gameCount + " : 落下カウント3回まで");
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        // 3回落下したならばゲームオーバー
+        if (gameCount >= 3)
+        {
+            SceneManager.LoadScene("GameOverScene");
+            // ゲームオーバー画面からスタート画面に戻るコルーチン
+            StartCoroutine(ContinueCoroutine());
+        }
     }
+
+    // コンテニューコルーチン
+    private IEnumerator ContinueCoroutine()
+    {
+        // if (SceneManager == "GameOverScene")
+        {
+            yield return new WaitForSeconds(5);
+            SceneManager.LoadScene("TitleScene");
+            Debug.Log("スタート画面へ");
+        }
+    }
+
 
     // --- 衝突判定（物理エンジンが自動で呼ぶ） ---
     // 何らかのコライダーに触れている間は「接地」とみなす
