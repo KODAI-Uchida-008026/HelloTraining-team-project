@@ -1011,7 +1011,7 @@ PrefabInstance:
     - target: {fileID: 1913830913361327400, guid: 405d4e3ce633f3b49be76fc11a792f19, type: 3}
       propertyPath: bgm
       value: 
-      objectReference: {fileID: 8300000, guid: a4cf16f2c711edb43b701d89d7f6060a, type: 3}
+      objectReference: {fileID: 8300000, guid: 5b38a498c3e63224f8b5e1669ac032a4, type: 3}
     - target: {fileID: 1913830913361327400, guid: 405d4e3ce633f3b49be76fc11a792f19, type: 3}
       propertyPath: _audioSource
       value: 
