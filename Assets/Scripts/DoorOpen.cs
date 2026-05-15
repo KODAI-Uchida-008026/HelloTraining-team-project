@@ -10,11 +10,14 @@ public class DoorOpen : MonoBehaviour
     {
         ドア.SetActive(false);
         開いたドア.SetActive(true);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        OpenDoor();
+        var kagi = collision.GetComponent<Antigravity>();
+        if (kagi != null && kagi.HasKagi())
+        {
+            OpenDoor();
+        }
     }
 }
