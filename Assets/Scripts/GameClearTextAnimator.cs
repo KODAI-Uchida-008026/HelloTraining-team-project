@@ -6,12 +6,23 @@ public class GameClearTextAnimator : MonoBehaviour
 {
     private void Start()
     {
+        // transform を毎回取得すると少し処理コストがかかるため、
+        // 最初にキャッシュして使い回す
         var transformCache = transform;
+
         var defaultPosition = transformCache.localPosition;
+
         var defaultScale = transformCache.localScale;
+
         transformCache.localPosition = new Vector3(0, 300f);
+
+        // 元の位置まで1秒かけて移動するアニメーション
         transformCache.DOLocalMove(defaultPosition, 1f)
+
+            // 一定速度で移動する設定
             .SetEase(Ease.Linear)
+
+            // 移動完了後に呼ばれる処理
             .OnComplete(() =>
             {
                 Debug.Log("GAME CLEAR!");
@@ -26,8 +37,10 @@ public class GameClearTextAnimator : MonoBehaviour
                     });
             });
 
+        // 10秒待ってから TitleScene にシーン遷移する
         DOVirtual.DelayedCall(10, () =>
         {
+            // タイトル画面を読み込む
             SceneManager.LoadScene("TitleScene");
 
         });
