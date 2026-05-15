@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,9 +6,16 @@ public class Antigravity : MonoBehaviour
 {
     // --- 設定用の変数 ---
     Rigidbody2D rigid2D;
-    [SerializeField] float jumpForce = 500.0f;
+    [SerializeField] float baseJumpForce = 500.0f;
     [SerializeField] float walkForce = 30.0f;
     [SerializeField] float maxWalkSpeed = 2.0f;
+    [SerializeField] float dashSpeedMultiplier = 2.0f;
+    [SerializeField] float highJumpMultiplier = 2.0f;
+
+    [Header("オーディオ設定")]
+    [Tooltip("ジャンプ時の効果音（AudioClip）を設定してください")]
+    public AudioClip jumpSE;
+    private AudioSource audioSource;
 
     // --- 見た目・アニメーション用の変数 ---
     public Sprite[] walkSprites;
@@ -20,18 +26,18 @@ public class Antigravity : MonoBehaviour
 
     // --- 状態管理用の変数 ---
     bool isGrounded = false;
-    public Transform spawnPoint;
-
-    // 落下カウント（staticなのでシーンをまたいで保持される）
     static int gameCount = 0;
+
+    // --- 鍵の管理（修正：static属性をつけ、シーンをまたいで保持されるように変更） ---
+    private static bool hasKagiGlobal = false;
 
     void Start()
     {
         Application.targetFrameRate = 60;
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.audioSource = GetComponent<AudioSource>();
 
-        // 名前でスポーン地点を探してワープ
         GameObject spawnObj = GameObject.Find("SpawnPoint");
         if (spawnObj != null)
         {
@@ -39,10 +45,24 @@ public class Antigravity : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Hierarchyに 'SpawnPoint' という名前のオブジェクトが見つかりません！");
+            Debug.LogWarning("Hierarchyに 'SpawnPoint' が見つかりません");
         }
 
         this.rigid2D.linearVelocity = Vector2.zero;
+
+        // 【デバッグ用】シーン開始時の鍵の状態をログに出す
+        Debug.Log($"【鍵システム】シーン開始時の鍵の所持状態: {hasKagiGlobal}");
+
+        // もしすでに鍵を持っている状態なら、このステージにある鍵オブジェクトを最初から消去する
+        if (hasKagiGlobal)
+        {
+            GameObject keyObj = GameObject.Find("key");
+            if (keyObj != null)
+            {
+                Destroy(keyObj);
+                Debug.Log("【鍵システム】すでに鍵を所持しているため、配置されている鍵を消去しました。");
+            }
+        }
     }
 
     void Update()
@@ -64,34 +84,30 @@ public class Antigravity : MonoBehaviour
         // --- 2. ジャンプ処理 (スペースキー) ---
         if (keyboard.spaceKey.wasPressedThisFrame && isGrounded)
         {
-            if (keyboard.spaceKey.wasPressedThisFrame && isGrounded && keyboard.sKey.isPressed)
+            float currentJumpForce = baseJumpForce;
+            if (keyboard.sKey.isPressed)
             {
-                jumpForce = 500.0f * 2;
-            }
-            else
-            {
-                jumpForce = 500.0f;
+                currentJumpForce *= highJumpMultiplier;
             }
 
             float jumpDir = (this.rigid2D.gravityScale > 0) ? 1.0f : -1.0f;
-            this.rigid2D.AddForce(transform.up * jumpForce * jumpDir);
+            this.rigid2D.AddForce(transform.up * currentJumpForce * jumpDir);
+
+            if (audioSource != null && jumpSE != null)
+            {
+                audioSource.PlayOneShot(jumpSE);
+            }
         }
 
         // --- 3. 左右移動処理 ---
         float direction = 0;
-        if (keyboard.rightArrowKey.isPressed && keyboard.bKey.isPressed || keyboard.dKey.isPressed && keyboard.bKey.isPressed ||
-            keyboard.leftArrowKey.isPressed && keyboard.bKey.isPressed || keyboard.aKey.isPressed && keyboard.bKey.isPressed)
-        {
-            maxWalkSpeed = 4.0f;
-        }
-        else
-        {
-            maxWalkSpeed = 2.0f;
-        }
-        if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) direction = 1.0f;
-        if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) direction = -1.0f;
+        bool isDashing = keyboard.bKey.isPressed;
+        float currentMaxSpeed = isDashing ? maxWalkSpeed * dashSpeedMultiplier : maxWalkSpeed;
 
-        if (Mathf.Abs(this.rigid2D.linearVelocityX) < this.maxWalkSpeed)
+        if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) direction = 1.0f;
+        else if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) direction = -1.0f;
+
+        if (Mathf.Abs(this.rigid2D.linearVelocityX) < currentMaxSpeed)
         {
             this.rigid2D.AddForce(new Vector2(direction * walkForce, 0));
         }
@@ -123,7 +139,7 @@ public class Antigravity : MonoBehaviour
             if (walkSprites.Length > 0) this.spriteRenderer.sprite = this.walkSprites[0];
         }
 
-        // --- 5. ミス判定（画面外）とゲームオーバー処理 ---
+        // --- 5. ミス判定（画面外） ---
         if (transform.position.y < -10 || transform.position.y > 10)
         {
             gameCount++;
@@ -131,13 +147,11 @@ public class Antigravity : MonoBehaviour
 
             if (gameCount >= 3)
             {
-                // ゲームオーバー時はカウントをリセットして遷移（無限ロードを防止）
                 gameCount = 0;
                 SceneManager.LoadScene("GameOverScene");
             }
             else
             {
-                // まだ3回未満なら現在のステージをやり直し
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
@@ -146,43 +160,27 @@ public class Antigravity : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision) { isGrounded = true; }
     private void OnCollisionExit2D(Collision2D collision) { isGrounded = false; }
 
-    bool hasKagi = false;
-
-    // --- トリガー（判定領域）の接触処理 ---
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // A. 鍵を拾う判定
+        // 鍵を拾う判定
         if (collision.gameObject.name == "key")
         {
-            hasKagi = true;
-            Debug.Log("鍵を拾いました！");
+            hasKagiGlobal = true;
+            Debug.Log("鍵を拾いました！保持用データに記憶します。");
             Destroy(collision.gameObject);
         }
-
-        // B. ゴール（フラッグ）の判定
-        if (collision.gameObject.name == "door")
-        {
-            if (hasKagi == true)
-            {
-                Debug.Log("次のシーンへ");
-                StartCoroutine(DoorCoroutine());
-            }
-            else
-            {
-                Debug.Log("フラッグに到達しましたが、鍵がありません！");
-            }
-        }
     }
 
-    private IEnumerator DoorCoroutine()
-    {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("6thScene");
-    }
-
-    // 外部から鍵の所持状態を確認したい場合用の関数
     public bool HasKagi()
     {
-        return hasKagi;
+        return hasKagiGlobal;
+    }
+
+    /// <summary>
+    /// タイトル画面のスタートボタンから呼び出して、鍵の記憶をリセットするための関数
+    /// </summary>
+    public static void ResetKeyState()
+    {
+        hasKagiGlobal = false;
     }
 }
