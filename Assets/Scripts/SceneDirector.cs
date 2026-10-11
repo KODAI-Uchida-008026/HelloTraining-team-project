@@ -32,6 +32,12 @@ public class SceneDirector : MonoBehaviour
         }
     }
 
+    //インストラクションズからゲームシーンへの遷移
+    public void OnClickStart()
+    {
+        SceneManager.LoadScene("1stScene");
+    }
+
     /// <summary>
     /// 前のシーンからどの方向へ進んできたかに応じて、猫の初期配置（X座標）を調整する
     /// </summary>
@@ -74,9 +80,9 @@ public class SceneDirector : MonoBehaviour
         Door.ResetDoorState();
         Antigravity.ResetKeyState();
 
-        // 最初のシーン（1stScene）への遷移を設定
+        // 最初のシーン（1stScene）の前にインストラクションズへの遷移を設定
         lastSceneName = "TitleScene";
-        SceneManager.LoadScene("1stScene");
+        SceneManager.LoadScene("InstructionsScene");
     }
 
     void Update()
