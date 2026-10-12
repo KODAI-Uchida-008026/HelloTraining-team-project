@@ -94,7 +94,7 @@
 |------|------|
 | **OS** | Windows 11 |
 | **Unity Editor Version** | 6000.3.12f1 |
-| **ビルド済みファイル** |[こちらのリリースページからダウンロード](https://github.com/KODAI-Uchida-008026/HelloTraining-team-project/releases)|
+| **ビルド済みファイル<br>アプリインストーラ** |[こちらのリリースページからダウンロード](https://github.com/KODAI-Uchida-008026/HelloTraining-team-project/releases)|
 
 <br>
 
