@@ -1,8 +1,8 @@
-# Unity チーム開発課題「探す」 『FindTheCat 「猫を探そう！」』
+# Unity チーム開発課題「探す」<br>『FindTheCat 「猫を探そう！」』
 
 **7日間開発プロジェクト**  
 
-☆スクリーンショット
+<img width="2038" height="1134" alt="スクリーンショット 2026-10-11 170616" src="https://github.com/user-attachments/assets/86c44702-b728-45b9-a54a-728ae74aa7b7" />
 
 指導講師：小西秀明（職業訓練校 Unity講座）
 
@@ -25,6 +25,8 @@
 - [発表内容](#presentation-plan)
 - [参考資料](#references)
 
+<img width="2034" height="1128" alt="スクリーンショット 2026-10-11 171012" src="https://github.com/user-attachments/assets/9fd42704-e666-482a-8912-474a5a0814c7" />
+
 ---
 
 ## チーム情報 <a id="team-info"></a>
@@ -38,7 +40,9 @@
 | **GitHub URL** | `(https://github.com/K.U-008026/HelloTraining-team-project)` |
 | **作成日** | 2026年5月15日 |
 | **Unity バージョン** | Unity 6（URP） |
-| **プレイ動画** | ☆ |
+| **プレイ動画** | https://youtu.be/jb1VUg3AuWU |
+
+<img width="2030" height="1150" alt="スクリーンショット 2026-10-11 170849" src="https://github.com/user-attachments/assets/511e2062-64d5-4f9f-a7af-aad88ca4618c" />
 
 ---
 
@@ -61,10 +65,12 @@
 | **ゲームタイトル** | FindTheCat 『猫を探そう！』 |
 | **ゲーム形式** | 固定スクリーン型横視点フリップスクリーン方式2Dジャンピングアクションゲーム |
 | **ゲームの目的** | 猫を「探して」ヒントを「探して」ゴールを目指す |
-| **プレイヤー操作** | → ← とADで移動、スペースでジャンプ　Gキーで重力反転　Bで加速 |
+| **プレイヤー操作** | → ← とD Aで移動、スペースでジャンプ　Gキーで重力反転　Bで加速 |
 | **勝利条件** | 猫を探してゴールにたどり着く |
 | **失敗条件** | 3回落下するとゲームオーバー |
 | **特徴・工夫点** | 『Climb Cloud』を参考としてシーン遷移やコース形態、プレイヤーやゴール設定を工夫 |
+
+<img width="2036" height="1134" alt="スクリーンショット 2026-10-11 171054" src="https://github.com/user-attachments/assets/cc488525-271c-4080-bd67-72735542863d" />
 
 ---
 
@@ -80,6 +86,7 @@
 ---
 
 ## 動作確認環境・操作方法 <a id="how-to-play"></a>
+
 
 **動作確認環境**
 
@@ -101,6 +108,8 @@
 | G | キャラクターの上下反転 |
 | B | 加速 |
 | Esc | ゲーム終了 |
+
+<img width="2026" height="1134" alt="スクリーンショット 2026-10-11 171143" src="https://github.com/user-attachments/assets/7e111464-bc6b-49a6-8add-01d80ff5ce4e" />
 
 ---
 
@@ -126,6 +135,8 @@
 
 ## 今後の改善点 <a id="future"></a>
 それぞれが能力の違う人間であり、短期間での意見のすり合わせも決して簡単では無かったため、幾度となくコンフリクトが起こり、作業内容の食い違いが起こりました。しかし、これらは実際のIT現場における開発作業でも起こり得ることであり、転職に向けた大きな経験値であると考えられることから、それぞれがそれぞれの反省点を振り返り今後に活かしていき、更なる発展に努めて参ります。
+
+<img width="2044" height="1146" alt="スクリーンショット 2026-10-11 171210" src="https://github.com/user-attachments/assets/b8c28fbd-65ed-4c89-bf09-0235ca2206e1" />
 
 ---
 
@@ -183,10 +194,8 @@ Assets/
 
 - **シーン構成​**
 ```
-☆
+TitleScene → InstructionsScene → 1stScene → 2ndScene → 3rdScene → 4thScene → 5thScene → 6thScene → GameOverScene → GameClearScene
 ```
----
-
 ---
 
 ## AI利用の有無 <a id="use-of-ai"></a>
@@ -215,6 +224,8 @@ AIはあくまで制作を補助するツールとして使用し、実際のコ
 | **アピールポイント** | シーン遷移とコースデザイン　<br>　様々なギミックやトラップ |
 | **担当箇所で頑張った点** | 完成を優先した2Dゲームでしたがコンフリクトに苦戦しました|
 | **発表担当** | 全員で順番に担当し一部コメント補足 |
+
+<img width="2030" height="1134" alt="スクリーンショット 2026-10-11 170639" src="https://github.com/user-attachments/assets/cff07270-0023-488e-8469-dd9cdb27f0d4" />
 
 ---
 
